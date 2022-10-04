@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ten_thousand_hours/data/task_data.dart';
+import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 import 'package:ten_thousand_hours/view/widgets/custom_button.dart';
 
 class AddTask extends StatelessWidget {
   static String id = "AddTask";
-  const AddTask({Key? key}) : super(key: key);
+  final TextEditingController taskNameController = TextEditingController();
+  AddTask({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +17,9 @@ class AddTask extends StatelessWidget {
           Expanded(
               child: Center(
             child: TextFormField(
+              controller: taskNameController,
               textAlign: TextAlign.center,
               decoration: const InputDecoration(
-                icon: Icon(Icons.add_card),
                 hintText: 'Enter task name',
                 labelStyle: TextStyle(
                   color: Color(0xFF6200EE),
@@ -25,11 +29,24 @@ class AddTask extends StatelessWidget {
           )),
           Padding(
             padding: const EdgeInsets.all(10),
-            child: CustomButton(buttonText: "Save", buttonCta: () {}),
+            child:
+                Consumer<TaskListProvider>(builder: (context, provider, child) {
+              return CustomButton(
+                buttonText: "Save",
+                buttonCta: () {
+                  provider.onAddTask(TaskData(0, taskNameController.text));
+                  Navigator.pop(context);
+                },
+              );
+            }),
           ),
           Padding(
             padding: const EdgeInsets.all(10),
-            child: CustomButton(buttonText: "Back", buttonCta: () {}),
+            child: CustomButton(
+                buttonText: "Back",
+                buttonCta: () {
+                  Navigator.pop(context);
+                }),
           ),
           const SizedBox(
             height: 25,

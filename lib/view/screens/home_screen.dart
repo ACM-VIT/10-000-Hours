@@ -14,10 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => TaskListProvider(),
-      child: const HomeScreenView(),
-    );
+    return const HomeScreenView();
   }
 }
 
@@ -27,47 +24,39 @@ class HomeScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TaskListProvider>(builder: (consumer, tasklist, child) {
-      List<TaskData> taskList = tasklist.getTaskList();
-      taskList.add(TaskData(100, "A"));
-      taskList.add(TaskData(100, "A"));
-      taskList.add(TaskData(100, "A"));
-      taskList.add(TaskData(100, "A"));
-      taskList.add(TaskData(100, "A"));
-      //print(tasklist);
-      return Scaffold(
-          appBar: AppBar(
-            title: const Text("10-000 Hours"),
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("tenK Hours"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
+          child: Column(
+            children: [
+              Expanded(
+                child: Consumer<TaskListProvider>(
+                    builder: (context, provider, child) {
+                  return ListView.builder(
+                      itemCount: provider.getTaskList().length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () => printIndex(index),
+                          child: TaskCard(
+                              taskName:
+                                  provider.getTaskList()[index].getTaskName(),
+                              colorCode: colorCodes[index % 6]),
+                        );
+                      });
+                }),
+              ),
+              CustomButton(
+                buttonText: "add new skill",
+                buttonCta: () {
+                  Navigator.pushNamed(context, AddTask.id);
+                },
+              ),
+            ],
           ),
-          body: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView.separated(
-                    itemCount: tasklist.getTaskList().length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () => printIndex(index),
-                        child: TaskCard(
-                            taskName: taskList[index].getTaskName(),
-                            colorCode: colorCodes[index % 6]),
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(),
-                  ),
-                ),
-                CustomButton(
-                  buttonText: "add new skill",
-                  buttonCta: () {
-                    Navigator.pushNamed(context, AddTask.id);
-                  },
-                ),
-              ],
-            ),
-          ));
-    });
+        ));
   }
 }
 
