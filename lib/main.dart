@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'view/screens/add_task.dart';
 
-import 'screens/home_screen.dart';
+import 'view/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.id,
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
+        AddTask.id: (context) => const AddTask(),
       },
     );
   }
