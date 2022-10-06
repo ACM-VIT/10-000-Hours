@@ -19,7 +19,6 @@ class HomeScreen extends StatelessWidget {
 }
 
 class HomeScreenView extends StatelessWidget {
-  static List<int> colorCodes = <int>[600, 500, 400, 300, 200, 100];
   const HomeScreenView({super.key});
 
   @override
@@ -45,7 +44,7 @@ class HomeScreenView extends StatelessWidget {
                           child: TaskCard(
                               taskName:
                                   provider.getTaskList()[index].getTaskName(),
-                              colorCode: colorCodes[index % 6]),
+                              colorCode: 800),
                         );
                       });
                 }),

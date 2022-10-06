@@ -11,8 +11,12 @@ class TaskCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(10),
       height: 50,
-      color: Colors.amber[colorCode],
-      child: Center(child: Text(taskName)),
+      color: Colors.grey[colorCode],
+      child: Center(
+          child: Text(
+        taskName,
+        style: const TextStyle(color: Colors.white),
+      )),
     );
   }
 }
