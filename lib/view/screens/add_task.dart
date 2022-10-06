@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ten_thousand_hours/data/task_data.dart';
+import 'package:ten_thousand_hours/data/timer_data.dart';
 import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 import 'package:ten_thousand_hours/view/widgets/custom_button.dart';
 
 class AddTask extends StatelessWidget {
   static String id = "AddTask";
+  final TimerData timerData = TimerData(0, 0, 0);
   final TextEditingController taskNameController = TextEditingController();
   AddTask({Key? key}) : super(key: key);
 
@@ -34,7 +36,8 @@ class AddTask extends StatelessWidget {
               return CustomButton(
                 buttonText: "Save",
                 buttonCta: () {
-                  provider.onAddTask(TaskData(0, taskNameController.text));
+                  provider
+                      .onAddTask(TaskData(timerData, taskNameController.text));
                   Navigator.pop(context);
                 },
               );

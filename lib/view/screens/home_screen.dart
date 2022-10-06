@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 import 'package:ten_thousand_hours/view/screens/add_task.dart';
-import 'package:ten_thousand_hours/view/screens/task_time.dart';
+import 'package:ten_thousand_hours/view/screens/timer_screen.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/task_card.dart';
 
@@ -39,7 +39,9 @@ class HomeScreenView extends StatelessWidget {
                       itemCount: provider.getTaskList().length,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
-                          onTap: () => Navigator.pushNamed(context, TaskTimer.id,arguments: {'index' : index}),
+                          onTap: () => Navigator.pushNamed(
+                              context, TaskTimer.id,
+                              arguments: {'index': index}),
                           child: TaskCard(
                               taskName:
                                   provider.getTaskList()[index].getTaskName(),

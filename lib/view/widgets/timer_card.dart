@@ -43,7 +43,7 @@ class TimerCard extends StatelessWidget {
           !completion
               ? Container(
                   color: Colors.blue,
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: const Text('TIMER'))
               : Container(),
           !completion
