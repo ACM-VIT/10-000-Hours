@@ -1,6 +1,6 @@
 <h1 align="center"><a href="https://organize.mlh.io/participants/events/4390-kickstarting-hacktoberfest-with-acm-vit">Kicking Off Hacktoberfest with ACM-VIT!</a></h1>
 <p align="center">
-<img src="https://raw.githubusercontent.com/Malika01/hacktoberfest-readme/master/Final.png">
+<img src="https://github.com/Shubhi-Paul/10-000-Hours/blob/master/assets/forktober_banner.png">
 </p>
 
 <h2 align="center"> PROJECT TITLE </h2>
@@ -73,5 +73,7 @@ git merge
 ---
 ## Authors
 
-**Authors:** <!-- [author1's name](link to their github profile), [author2's name](link to their github profile) .. -->  
-**Contributors:** <!-- Generate contributors list using this link - https://contributors-img.web.app/preview -->
+**Authors:** 
+- [Shubhi Paul](https://github.com/Shubhi-Paul) 
+- [Himanshu Sharma](https://github.com/Him-anshuSharma)   
+
