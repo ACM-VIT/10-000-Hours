@@ -3,10 +3,10 @@
 <img src="https://github.com/Shubhi-Paul/10-000-Hours/blob/master/assets/forktober_banner.png">
 </p>
 
-<h2 align="center"> PROJECT TITLE </h2>
+<h2 align="center"> 10K Hours </h2>
 
 <p align="center"> 
-Short description about the project.
+A flutter application to track the number of hours you devoted a particular skill. Helps you track your process in a neat and organised way.
 </p>
 
 <p>
