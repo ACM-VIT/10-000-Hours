@@ -27,7 +27,7 @@ void main() {
         OnboardingScreen.id: (context) => OnboardingScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
         AddTask.id: (context) => AddTask(),
-        TaskTimer.id: (context) => TaskTimer(),
+        TaskTimer.id: (context) => const TaskTimer(),
       },
     ),
   ));
