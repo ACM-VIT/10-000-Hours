@@ -23,7 +23,7 @@ void main() {
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
         AddTask.id: (context) => AddTask(),
-        TaskTimer.id: (context) => TaskTimer(),
+        TaskTimer.id: (context) => const TaskTimer(),
       },
     ),
   ));
