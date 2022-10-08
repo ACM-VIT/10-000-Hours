@@ -50,11 +50,6 @@ A flutter application to track the number of hours you devoted a particular skil
 
   For additional guidelines, refer to [participation rules](https://hacktoberfest.digitalocean.com/details#rules)
 
----
-
--_domain specific guidelines here_-
-  
----
 ## Overview
 
 The overview starts here. Random text about the project, motive, how, what, why etc.
