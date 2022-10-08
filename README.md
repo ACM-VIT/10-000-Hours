@@ -25,7 +25,7 @@ A flutter application to track the number of hours you devoted a particular skil
  * Clone the target repository. To clone, click on the clone button and copy the https address. Then run 
  <pre><code>git clone https://github.com/ACM-VIT/10-000-Hours.git</code></pre>
 * Go to the cloned directory by running 
-<pre><code>cd ten_thousand_hours</code></pre>
+<pre><code>cd 10-000-Hours</code></pre>
 * Create a new branch. Use 
 <pre><code> git checkout -b [YOUR-BRANCH-NAME]</code></pre>
 * Make your changes to the code. Add changes to your branch by using 
