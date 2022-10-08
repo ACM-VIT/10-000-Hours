@@ -18,6 +18,7 @@ void main() {
       )
     ],
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "10,000 Hours",
       initialRoute: HomeScreen.id,
       routes: {
