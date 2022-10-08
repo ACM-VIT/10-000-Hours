@@ -25,7 +25,7 @@ class HomeScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("tenK Hours"),
+          title: const Text("10-000 Hours"),
         ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
