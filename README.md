@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://organize.mlh.io/participants/events/4390-kickstarting-hacktoberfest-with-acm-vit">Kicking Off Hacktoberfest with ACM-VIT!</a></h1>
+<h1 align="center>Kicking Off Hacktoberfest with ACM-VIT!</h1>
 <p align="center">
 <img src="https://github.com/ACM-VIT/10-000-Hours/blob/master/assets/forktober_banner.png">
 </p>
@@ -9,7 +9,7 @@
 A flutter application to track the number of hours you devoted a particular skill. Helps you track your process in a neat and organised way.
 </p>
 
-<p>
+<p align="center">
   <a href="https://acmvit.in/" target="_blank">
     <img alt="made-by-acm" src="https://img.shields.io/badge/MADE%20BY-ACM%20VIT-blue?style=for-the-badge" />
   </a>
