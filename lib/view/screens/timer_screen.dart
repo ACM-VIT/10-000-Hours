@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:provider/provider.dart';
 
+import '../widgets/timer_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ten_thousand_hours/data/timer_data.dart';
@@ -8,9 +10,7 @@ import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 
 class TaskTimer extends StatefulWidget {
   static String id = "TaskTimer";
-  String clockState = "START";
-
-  TaskTimer({Key? key}) : super(key: key);
+  const TaskTimer({Key? key}) : super(key: key);
 
   @override
   State<TaskTimer> createState() => _TaskTimerState();
@@ -90,6 +90,7 @@ class _TaskTimerState extends State<TaskTimer> {
     final hours = strDigits(myDuration.inHours.remainder(24));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -147,24 +148,37 @@ class _TaskTimerState extends State<TaskTimer> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Expanded(child: SizedBox()),
+            // const Expanded(child: SizedBox()),
 
             // Step 8
-            Text(
-              '$hours:$minutes:$seconds',
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 50),
+            Expanded(
+              child: Consumer<TaskListProvider>(
+                builder: (context, provider, child) {
+                  return TimerCard(
+                    hours: hours,
+                    minutes: minutes,
+                    seconds: seconds,
+                    taskName: provider
+                        .getTaskList()[arguments['index']]
+                        .getTaskName(),
+                  );
+                },
+              ),
             ),
+            // Text(
+            //   '$hours:$minutes:$seconds',
+            //   style: const TextStyle(
+            //       fontWeight: FontWeight.bold,
+            //       color: Colors.black,
+            //       fontSize: 50),
+            // ),
 
-            const Expanded(child: SizedBox()),
+            // const Expanded(child: SizedBox()),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.greenAccent),
+                  style: ElevatedButton.styleFrom(primary: Colors.greenAccent),
                   onPressed: () {
                     startTimer();
                     stopTimer(index);
@@ -177,8 +191,7 @@ class _TaskTimerState extends State<TaskTimer> {
                 ),
                 // Step 10
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.yellowAccent),
+                  style: ElevatedButton.styleFrom(primary: Colors.redAccent),
                   onPressed: () {
                     if (stopwatchTimer == null || stopwatchTimer!.isActive) {
                       stopTimer(index);
@@ -191,8 +204,7 @@ class _TaskTimerState extends State<TaskTimer> {
                 ),
                 // Step 11
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent),
+                    style: ElevatedButton.styleFrom(primary: Colors.redAccent),
                     onPressed: () {
                       resetTimer(index);
                     },
@@ -214,76 +226,3 @@ class _TaskTimerState extends State<TaskTimer> {
     );
   }
 }
-
-// class _TaskTimerState extends State<TaskTimer> {
-//   @override
-//   Widget build(BuildContext context) {
-//     final arguments = (ModalRoute.of(context)?.settings.arguments ??
-//         <String, dynamic>{}) as Map;
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         actions: [
-//           PopupMenuButton<int>(
-//             itemBuilder: (context) => [
-//               // popupmenu item 1
-//               PopupMenuItem(
-//                 value: 1,
-//                 onTap: () {},
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                   children: const [
-//                     Text('Edit'),
-//                     Icon(
-//                       Icons.edit_outlined,
-//                       color: Colors.black,
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//               PopupMenuItem(
-//                 value: 2,
-//                 onTap: () {},
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                   children: const [
-//                     Text('Star'),
-//                     Icon(
-//                       Icons.star_outlined,
-//                       color: Colors.black,
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//               PopupMenuItem(
-//                 value: 3,
-//                 onTap: () {},
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                   children: const [
-//                     Text('Delete'),
-//                     Icon(
-//                       Icons.delete_outline,
-//                       color: Colors.black,
-//                     )
-//                   ],
-//                 ),
-//               )
-//             ],
-//           ),
-//         ],
-//         title: const Text('Timer'),
-//       ),
-//       body: Column(
-//         children: [
-//           CustomButton(
-//             buttonText: "BACK",
-//             buttonCta: () {
-//               Navigator.pop(context);
-//             },
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
