@@ -1,7 +1,10 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 import 'package:ten_thousand_hours/providers/timer_provider.dart';
+import 'package:ten_thousand_hours/view/screens/onboarding_screen.dart';
 import 'view/screens/add_task.dart';
 import 'view/screens/timer_screen.dart';
 
@@ -19,8 +22,9 @@ void main() {
     ],
     child: MaterialApp(
       title: "10,000 Hours",
-      initialRoute: HomeScreen.id,
+      initialRoute: OnboardingScreen.id,
       routes: {
+        OnboardingScreen.id: (context) => OnboardingScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
         AddTask.id: (context) => AddTask(),
         TaskTimer.id: (context) => TaskTimer(),
