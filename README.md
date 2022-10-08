@@ -1,6 +1,6 @@
 <h1 align="center"><a href="https://organize.mlh.io/participants/events/4390-kickstarting-hacktoberfest-with-acm-vit">Kicking Off Hacktoberfest with ACM-VIT!</a></h1>
 <p align="center">
-<img src="https://github.com/Shubhi-Paul/10-000-Hours/blob/master/assets/forktober_banner.png">
+<img src="https://github.com/ACM-VIT/10-000-Hours/blob/master/assets/forktober_banner.png">
 </p>
 
 <h2 align="center"> 10K Hours </h2>
