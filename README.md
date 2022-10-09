@@ -47,6 +47,8 @@ A flutter application to track the number of hours you devoted a particular skil
       * that are plagarized from someone else's branch
   * Do not spam
   * Project maintainer's decision on validity of PR is final.
+  * Please ask to get assigned before you start working with the issue.
+ 
 
   For additional guidelines, refer to [participation rules](https://hacktoberfest.digitalocean.com/details#rules)
 
