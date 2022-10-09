@@ -4,9 +4,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ten_thousand_hours/view/screens/home_screen.dart';
 
-class splashScreen extends StatelessWidget {
+class SplashScreen extends StatelessWidget {
     static String id = "SplashScreen";
-  const splashScreen({super.key});
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
