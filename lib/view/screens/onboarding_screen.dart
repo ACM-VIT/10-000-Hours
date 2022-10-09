@@ -33,10 +33,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Scaffold(
       backgroundColor: const Color(0xFFFFF4EA),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 44, vertical: 60),
+        padding: EdgeInsets.symmetric(horizontal: 44, vertical: isLandscape?10:40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -59,13 +61,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: 0.5 * MediaQuery.of(context).size.height,
               child: PageView(
                 controller: controller,
                 onPageChanged: (index) {
                   setState(() {
-                    if (onboardingPagesList.length-1 == index) {
+                    if (onboardingPagesList.length - 1 == index) {
                       setState(() {
                         isLastPage = true;
                       });
@@ -94,14 +96,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             RawMaterialButton(
               onPressed: isLastPage
                   ? () {
-                      Navigator.pushNamed(context, HomeScreen.id);
+                      Navigator.pushReplacementNamed(context, HomeScreen.id);
                     }
                   : () {
                       controller.nextPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeInOut);
                     },
-              constraints: BoxConstraints.tight(const Size(double.infinity, 42)),
+              constraints:
+                  BoxConstraints.tight(const Size(double.infinity, 42)),
               elevation: 7,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(7),
@@ -109,8 +112,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               fillColor: const Color(0xFF0148FF),
               child: Text(
                 isLastPage ? 'Continue' : 'Next',
-                style:
-                    const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+                style: const TextStyle(
+                    fontWeight: FontWeight.w600, color: Colors.white),
               ),
             )
           ],
@@ -129,7 +132,7 @@ Widget buildPage({String? title, String? description}) {
         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       ),
       const SizedBox(
-        height: 50,
+        height: 30,
       ),
       Text(
         '$description',
