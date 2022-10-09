@@ -31,6 +31,7 @@ class HomeScreenView extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
           child: Column(
             children: [
+              TaskCard(taskName: 'Hello'),
               Expanded(
                 child: Consumer<TaskListProvider>(
                     builder: (context, provider, child) {
@@ -44,7 +45,7 @@ class HomeScreenView extends StatelessWidget {
                           child: TaskCard(
                               taskName:
                                   provider.getTaskList()[index].getTaskName(),
-                              colorCode: 800),
+                              ),
                         );
                       });
                 }),

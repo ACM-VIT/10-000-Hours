@@ -21,7 +21,7 @@ void main() {
     ],
     child: MaterialApp(
       title: "10,000 Hours",
-      initialRoute: EditTaskName.id,
+      initialRoute: HomeScreen.id,
       routes: {
         
         splashScreen.id: (context) => splashScreen(),
