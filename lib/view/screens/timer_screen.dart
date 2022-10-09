@@ -94,52 +94,61 @@ class _TaskTimerState extends State<TaskTimer> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          PopupMenuButton<int>(
-            itemBuilder: (context) => [
-              // popupmenu item 1
-              PopupMenuItem(
-                value: 1,
-                onTap: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    Text('Edit'),
-                    Icon(
-                      Icons.edit_outlined,
-                      color: Colors.black,
+          Consumer<TaskListProvider>(
+            builder: (context, provider, child) {
+              return PopupMenuButton<int>(
+                itemBuilder: (context) => [
+                  // popupmenu item 1
+                  PopupMenuItem(
+                    value: 1,
+                    onTap: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Text('Edit'),
+                        Icon(
+                          Icons.edit_outlined,
+                          color: Colors.black,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: 2,
-                onTap: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    Text('Star'),
-                    Icon(
-                      Icons.star_outlined,
-                      color: Colors.black,
+                  ),
+                  PopupMenuItem(
+                    value: 2,
+                    onTap: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Text('Star'),
+                        Icon(
+                          Icons.star_outlined,
+                          color: Colors.black,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: 3,
-                onTap: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    Text('Delete'),
-                    Icon(
-                      Icons.delete_outline,
-                      color: Colors.black,
-                    )
-                  ],
-                ),
-              )
-            ],
+                  ),
+                  PopupMenuItem(
+                    value: 3,
+                    onTap: () {
+                      Navigator.pop(context);
+                      Future.delayed(const Duration(milliseconds: 500), () {
+                        provider.deleteTask(index);
+                      });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Text('Delete'),
+                        Icon(
+                          Icons.delete_outline,
+                          color: Colors.black,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              );
+            },
           ),
         ],
         title: Text(taskListProvider.getTaskList()[index].getTaskName()),
