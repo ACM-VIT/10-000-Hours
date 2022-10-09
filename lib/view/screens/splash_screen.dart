@@ -3,6 +3,7 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ten_thousand_hours/view/screens/home_screen.dart';
+import 'package:ten_thousand_hours/view/screens/onboarding_screen.dart';
 
 class SplashScreen extends StatelessWidget {
     static String id = "SplashScreen";
@@ -13,7 +14,7 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
     splash: 'assets/logo.png', 
     splashIconSize:200, 
-    nextScreen: HomeScreen(),    
+    nextScreen: OnboardingScreen(),    
     );
 
   }

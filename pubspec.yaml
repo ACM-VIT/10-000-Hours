@@ -35,6 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   animated_splash_screen: ^1.3.0
+  animated_splash_screen: ^1.3.0
   cupertino_icons: ^1.0.2
   provider: ^6.0.3
   flutter_svg: ^1.1.5
@@ -53,6 +54,8 @@ dev_dependencies:
 
   
 
+  
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -64,7 +67,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets :
-    - assets/
+    - assets/work1.png
     - assets/logo.png
     
 
