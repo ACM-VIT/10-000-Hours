@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 import 'package:ten_thousand_hours/providers/timer_provider.dart';
+import 'package:ten_thousand_hours/view/screens/onboarding_screen.dart';
 import 'view/screens/add_task.dart';
 import 'view/screens/timer_screen.dart';
-
+import 'view/screens/splash_screen.dart';
 import 'view/screens/home_screen.dart';
 
 void main() {
@@ -18,10 +19,11 @@ void main() {
       )
     ],
     child: MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: "10,000 Hours",
-      initialRoute: HomeScreen.id,
+      initialRoute: SplashScreen.id,
       routes: {
+        SplashScreen.id: (context) => const SplashScreen(),
+        OnboardingScreen.id: (context) => OnboardingScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
         AddTask.id: (context) => AddTask(),
         TaskTimer.id: (context) => const TaskTimer(),
