@@ -60,7 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             Container(
-              height: 0.5 * MediaQuery.of(context).size.height,
+              height: 0.45 * MediaQuery.of(context).size.height,
               child: PageView(
                 controller: controller,
                 onPageChanged: (index) {
