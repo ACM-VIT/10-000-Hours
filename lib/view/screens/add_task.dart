@@ -39,7 +39,7 @@ class AddTask extends StatelessWidget {
 
                   
                   provider
-                      .onAddTask(TaskData(timerData, taskNameController.text));
+                      .onAddTask(TaskData(timerData, taskNameController.text),context);
                   Navigator.pop(context);
                 },
               );
