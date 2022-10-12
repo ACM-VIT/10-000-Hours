@@ -23,7 +23,7 @@ void main() {
     ],
     child: MaterialApp(
       title: "10,000 Hours",
-      initialRoute: SplashScreen.id,
+      initialRoute: OnboardingScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         OnboardingScreen.id: (context) => OnboardingScreen(),
