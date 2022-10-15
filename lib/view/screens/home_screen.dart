@@ -26,23 +26,19 @@ class HomeScreenView extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height= MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("10-000 Hours"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
-        child: Column(
-          children: [
-            Expanded(
-              child: Consumer<TaskListProvider>(
-                builder: (context, provider, child) {
-                  if (provider.getTaskList().isEmpty) {
-                    return Container(margin: EdgeInsets.only(top:height/3 ),
-                      child: Text(
-                          "Please press the + button to create a Task",
-                          style: TextStyle(fontSize: width / 21)),
-                    );
-                  }
+
+        appBar: AppBar(
+          title: const Text("10-000 Hours"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
+          child: Column(
+            children: [
+        
+              Expanded(
+                child: Consumer<TaskListProvider>(
+                    builder: (context, provider, child) {
+
                   return ListView.builder(
                     itemCount: provider.getTaskList().length,
                     itemBuilder: (BuildContext context, int index) {
@@ -50,15 +46,20 @@ class HomeScreenView extends StatelessWidget {
                           onTap: () => Navigator.pushNamed(
                               context, TaskTimer.id,
                               arguments: {'index': index}),
-                          child: Container(padding: EdgeInsets.symmetric(vertical: 12),margin: EdgeInsets.only(bottom: 5),
-                            color: Colors.blue.shade100,
-                                 child: Center(
-                                child: Text(provider
-                                    .getTaskList()[index]
-                                    .getTaskName(),style: TextStyle(fontSize: 22)),),
-                          ),);
-                    },
-                  );
+
+                          child: TaskCard(
+                              taskName:
+                                  provider.getTaskList()[index].getTaskName(),
+                              ),
+                        );
+                      });
+                }),
+              ),
+              CustomButton(
+                buttonText: "add new skill",
+                buttonCta: () {
+                  Navigator.pushNamed(context, AddTask.id);
+
                 },
               ),
             ),
