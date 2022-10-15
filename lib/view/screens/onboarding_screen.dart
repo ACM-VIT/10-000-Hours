@@ -40,79 +40,88 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  controller.jumpToPage(onboardingPagesList.length - 1);
-                },
-                child: Visibility(
-                  visible: !isLastPage,
-                  child: const Text(
-                    'Skip',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF181818),
+           Container(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      controller.jumpToPage(onboardingPagesList.length - 1);
+                    },
+                    child: Visibility(
+                      visible: !isLastPage,
+                      child: const Text(
+                        'Skip',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF181818),
+                        ),
+                      ),
                     ),
                   ),
                 ),
+
+
+            Expanded(
+              flex: 3,
+              child: Container(
+                child: PageView(
+                  controller: controller,
+                  onPageChanged: (index) {
+                    setState(() {
+                      if (onboardingPagesList.length-1 == index) {
+                        setState(() {
+                          isLastPage = true;
+                        });
+                      } else {
+                        setState(() {
+                          isLastPage = false;
+                        });
+                      }
+                    });
+                  },
+                  children: onboardingPagesList,
+                ),
               ),
             ),
-            Container(
-              height: 0.5 * MediaQuery.of(context).size.height,
-              child: PageView(
+
+            Expanded(
+
+              child: SmoothPageIndicator(
                 controller: controller,
-                onPageChanged: (index) {
-                  setState(() {
-                    if (onboardingPagesList.length-1 == index) {
-                      setState(() {
-                        isLastPage = true;
-                      });
-                    } else {
-                      setState(() {
-                        isLastPage = false;
-                      });
-                    }
-                  });
-                },
-                children: onboardingPagesList,
+                count: onboardingPagesList.length,
+                effect: const ExpandingDotsEffect(
+                    dotWidth: 6,
+                    dotHeight: 6,
+                    activeDotColor: Colors.black,
+                    dotColor: Color(0x77403D3A)),
+                onDotClicked: (index) => controller.animateToPage(index,
+                    duration: const Duration(microseconds: 500),
+                    curve: Curves.easeInOut),
               ),
-            ),
-            SmoothPageIndicator(
-              controller: controller,
-              count: onboardingPagesList.length,
-              effect: const ExpandingDotsEffect(
-                  dotWidth: 6,
-                  dotHeight: 6,
-                  activeDotColor: Colors.black,
-                  dotColor: Color(0x77403D3A)),
-              onDotClicked: (index) => controller.animateToPage(index,
-                  duration: const Duration(microseconds: 500),
-                  curve: Curves.easeInOut),
             ),
             RawMaterialButton(
-              onPressed: isLastPage
-                  ? () {
-                      Navigator.pushNamed(context, HomeScreen.id);
-                    }
-                  : () {
-                      controller.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
-                    },
-              constraints: BoxConstraints.tight(const Size(double.infinity, 42)),
-              elevation: 7,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(7),
+                onPressed: isLastPage
+                    ? () {
+                        Navigator.pushNamed(context, HomeScreen.id);
+                      }
+                    : () {
+                        controller.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
+                      },
+                constraints: BoxConstraints.tight(const Size(double.infinity, 42)),
+                elevation: 7,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                fillColor: const Color(0xFF0148FF),
+                child: Text(
+                  isLastPage ? 'Continue' : 'Next',
+                  style:
+                      const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+                ),
               ),
-              fillColor: const Color(0xFF0148FF),
-              child: Text(
-                isLastPage ? 'Continue' : 'Next',
-                style:
-                    const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
-              ),
-            )
+
           ],
         ),
       ),

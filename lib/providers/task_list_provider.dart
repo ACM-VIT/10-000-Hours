@@ -22,7 +22,8 @@ class TaskListProvider extends ChangeNotifier {
     else
       {
         const snackBar = SnackBar(
-          content: Text('Please Specify a name for Task before saving it!!'),
+          content: Text('Please Specify a name for Task before'
+              ' saving it!!'),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
