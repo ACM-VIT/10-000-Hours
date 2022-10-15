@@ -23,41 +23,65 @@ class HomeScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height= MediaQuery.of(context).size.height;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("10-000 Hours"),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
-          child: Column(
-            children: [
-              Expanded(
-                child: Consumer<TaskListProvider>(
-                    builder: (context, provider, child) {
+      appBar: AppBar(
+        title: const Text("10-000 Hours"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
+        child: Column(
+          children: [
+            Expanded(
+              child: Consumer<TaskListProvider>(
+                builder: (context, provider, child) {
+                  if (provider.getTaskList().isEmpty) {
+                    return Container(margin: EdgeInsets.only(top:height/3 ),
+                      child: Text(
+                          "Please press the + button to create a Task",
+                          style: TextStyle(fontSize: width / 21)),
+                    );
+                  }
                   return ListView.builder(
-                      itemCount: provider.getTaskList().length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
+                    itemCount: provider.getTaskList().length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
                           onTap: () => Navigator.pushNamed(
                               context, TaskTimer.id,
                               arguments: {'index': index}),
-                          child: TaskCard(
-                              taskName:
-                                  provider.getTaskList()[index].getTaskName(),
-                              colorCode: 800),
-                        );
-                      });
-                }),
-              ),
-              CustomButton(
-                buttonText: "add new skill",
-                buttonCta: () {
-                  Navigator.pushNamed(context, AddTask.id);
+                          child: Container(padding: EdgeInsets.symmetric(vertical: 12),margin: EdgeInsets.only(bottom: 5),
+                            color: Colors.blue.shade100,
+                                 child: Center(
+                                child: Text(provider
+                                    .getTaskList()[index]
+                                    .getTaskName(),style: TextStyle(fontSize: 22)),),
+                          ),);
+                    },
+                  );
                 },
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+
+      // TaskCard(
+      //                     taskName:
+      //                     colorCode: 800),
+      floatingActionButton: SizedBox(
+        height: 80,
+        width: 80,
+        child: FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AddTask.id);
+            },
+            child: const Icon(
+              Icons.add,
+              size: 40,
+            )),
+      ),
+    );
   }
 }
 

@@ -36,8 +36,10 @@ class AddTask extends StatelessWidget {
               return CustomButton(
                 buttonText: "Save",
                 buttonCta: () {
+
+                  
                   provider
-                      .onAddTask(TaskData(timerData, taskNameController.text));
+                      .onAddTask(TaskData(timerData, taskNameController.text),context);
                   Navigator.pop(context);
                 },
               );
