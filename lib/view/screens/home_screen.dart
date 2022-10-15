@@ -23,7 +23,10 @@ class HomeScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height= MediaQuery.of(context).size.height;
     return Scaffold(
+
         appBar: AppBar(
           title: const Text("10-000 Hours"),
         ),
@@ -35,13 +38,15 @@ class HomeScreenView extends StatelessWidget {
               Expanded(
                 child: Consumer<TaskListProvider>(
                     builder: (context, provider, child) {
+
                   return ListView.builder(
-                      itemCount: provider.getTaskList().length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
+                    itemCount: provider.getTaskList().length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
                           onTap: () => Navigator.pushNamed(
                               context, TaskTimer.id,
                               arguments: {'index': index}),
+
                           child: TaskCard(
                               taskName:
                                   provider.getTaskList()[index].getTaskName(),
@@ -54,11 +59,30 @@ class HomeScreenView extends StatelessWidget {
                 buttonText: "add new skill",
                 buttonCta: () {
                   Navigator.pushNamed(context, AddTask.id);
+
                 },
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+
+      // TaskCard(
+      //                     taskName:
+      //                     colorCode: 800),
+      floatingActionButton: SizedBox(
+        height: 80,
+        width: 80,
+        child: FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AddTask.id);
+            },
+            child: const Icon(
+              Icons.add,
+              size: 40,
+            )),
+      ),
+    );
   }
 }
 
