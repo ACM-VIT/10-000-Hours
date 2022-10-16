@@ -23,8 +23,9 @@ class TimerCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+
           Image.asset(
-            'lib/assets/work1.png',
+            'assets/work1.png',
             height: 250,
             fit: BoxFit.fitHeight,
           ),
@@ -53,7 +54,7 @@ class TimerCard extends StatelessWidget {
                   child: LinearPercentIndicator(
                     lineHeight: 20,
                     percent: percentageCompletion,
-                    // center: const Text("30%"),
+                    
                     center: Text(
                         '${(percentageCompletion * 100).toStringAsPrecision(2)}%'),
                     // animation: true,
