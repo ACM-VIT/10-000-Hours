@@ -24,7 +24,7 @@ class TimerCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image.asset(
-            'lib/assets/work1.png',
+            'assets/work1.png',
             height: 250,
             fit: BoxFit.fitHeight,
           ),
