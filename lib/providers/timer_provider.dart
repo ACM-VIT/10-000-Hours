@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:ten_thousand_hours/data/task_data.dart';
 import 'package:ten_thousand_hours/data/timer_data.dart';
-import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 
 class TimerProvider extends ChangeNotifier {
   TimerData timerData = TimerData(0, 0, 0);
@@ -31,20 +31,20 @@ class TimerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void stopTimer(int index, TaskListProvider taskListProvider) {
+  void stopTimer(int index, List<TaskData> taskList) {
     timerData.updateData(myDuration.inHours, myDuration.inMinutes.remainder(60),
         myDuration.inSeconds.remainder(60));
     if (kDebugMode) {
       print("stopTimer: updating time");
     }
-    taskListProvider.getTaskList()[index].timeDevoted = timerData;
+    taskList[index].timeDevoted = timerData;
     stopwatchTimer!.cancel();
     notifyListeners();
   }
 
-  void resetTimer(int index, TaskListProvider taskListProvider) {
+  void resetTimer(int index, List<TaskData> taskList) {
     setDuration(const Duration(hours: 0));
-    stopTimer(index, taskListProvider);
+    stopTimer(index, taskList);
   }
 
   TimerData getTime() {

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:provider/provider.dart';
+import 'package:ten_thousand_hours/data/task_data.dart';
 import 'package:ten_thousand_hours/providers/timer_provider.dart';
 import '../widgets/timer_card.dart';
 import 'package:flutter/foundation.dart';
@@ -16,7 +17,6 @@ class TaskTimer extends StatefulWidget {
 }
 
 class _TaskTimerState extends State<TaskTimer> {
-  TaskListProvider taskListProvider = TaskListProvider();
   TimerProvider timerProvider = TimerProvider();
 
   @override
@@ -45,16 +45,16 @@ class _TaskTimerState extends State<TaskTimer> {
 
   @override
   Widget build(BuildContext context) {
+    final List<TaskData> taskList = context.read<TaskListProvider>().taskList;
+
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
     int index = arguments['index'];
     timerProvider.setDuration(
       Duration(
-        hours: taskListProvider.getTaskList()[index].getTimeSpend().getHour(),
-        minutes:
-            taskListProvider.getTaskList()[index].getTimeSpend().getMinutes(),
-        seconds:
-            taskListProvider.getTaskList()[index].getTimeSpend().getSeconds(),
+        hours: taskList[index].getTimeSpend().getHour(),
+        minutes: taskList[index].getTimeSpend().getMinutes(),
+        seconds: taskList[index].getTimeSpend().getSeconds(),
       ),
     );
     if (kDebugMode) {
@@ -123,7 +123,7 @@ class _TaskTimerState extends State<TaskTimer> {
             },
           ),
         ],
-        title: Text(taskListProvider.getTaskList()[index].getTaskName()),
+        title: Text(taskList[index].getTaskName()),
       ),
       body: Center(
         child: Column(
@@ -144,9 +144,8 @@ class _TaskTimerState extends State<TaskTimer> {
                           timerProviderData.myDuration.inMinutes.remainder(60)),
                       seconds: strDigits(
                           timerProviderData.myDuration.inSeconds.remainder(60)),
-                      taskName: provider
-                          .getTaskList()[arguments['index']]
-                          .getTaskName(),
+                      taskName:
+                          provider.taskList[arguments['index']].getTaskName(),
                     );
                   });
                 },
@@ -170,8 +169,10 @@ class _TaskTimerState extends State<TaskTimer> {
                         backgroundColor: Colors.greenAccent),
                     onPressed: () {
                       provider.startTimer(setCountDown);
-                      provider.stopTimer(index, taskListProvider);
+                      provider.stopTimer(index, taskList);
                       provider.startTimer(setCountDown);
+                      Provider.of<TaskListProvider>(context, listen: false)
+                          .update(index, taskList[index]);
                     },
                     child: const Text(
                       'Start',
@@ -185,7 +186,9 @@ class _TaskTimerState extends State<TaskTimer> {
                     onPressed: () {
                       if (provider.stopwatchTimer == null ||
                           provider.stopwatchTimer!.isActive) {
-                        provider.stopTimer(index, taskListProvider);
+                        provider.stopTimer(index, taskList);
+                        Provider.of<TaskListProvider>(context, listen: false)
+                            .update(index, taskList[index]);
                       }
                     },
                     child: const Text(
@@ -198,7 +201,9 @@ class _TaskTimerState extends State<TaskTimer> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.redAccent),
                       onPressed: () {
-                        provider.resetTimer(index, taskListProvider);
+                        provider.resetTimer(index, taskList);
+                        Provider.of<TaskListProvider>(context, listen: false)
+                            .update(index, taskList[index]);
                       },
                       child: const Text(
                         'Reset',

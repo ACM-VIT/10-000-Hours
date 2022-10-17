@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 import 'package:ten_thousand_hours/view/screens/add_task.dart';
 import 'package:ten_thousand_hours/view/screens/timer_screen.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/task_card.dart';
 
 class HomeScreen extends StatelessWidget {
   static String id = "HomeScreen";
@@ -24,7 +22,7 @@ class HomeScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height= MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text("10-000 Hours"),
@@ -36,27 +34,29 @@ class HomeScreenView extends StatelessWidget {
             Expanded(
               child: Consumer<TaskListProvider>(
                 builder: (context, provider, child) {
-                  if (provider.getTaskList().isEmpty) {
-                    return Container(margin: EdgeInsets.only(top:height/3 ),
-                      child: Text(
-                          "Please press the + button to create a Task",
+                  if (provider.taskList.isEmpty) {
+                    return Container(
+                      margin: EdgeInsets.only(top: height / 3),
+                      child: Text("Please press the + button to create a Task",
                           style: TextStyle(fontSize: width / 21)),
                     );
                   }
                   return ListView.builder(
-                    itemCount: provider.getTaskList().length,
+                    itemCount: provider.taskList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
-                          onTap: () => Navigator.pushNamed(
-                              context, TaskTimer.id,
-                              arguments: {'index': index}),
-                          child: Container(padding: EdgeInsets.symmetric(vertical: 12),margin: EdgeInsets.only(bottom: 5),
-                            color: Colors.blue.shade100,
-                                 child: Center(
-                                child: Text(provider
-                                    .getTaskList()[index]
-                                    .getTaskName(),style: TextStyle(fontSize: 22)),),
-                          ),);
+                        onTap: () => Navigator.pushNamed(context, TaskTimer.id,
+                            arguments: {'index': index}),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          margin: EdgeInsets.only(bottom: 5),
+                          color: Colors.blue.shade100,
+                          child: Center(
+                            child: Text(provider.taskList[index].getTaskName(),
+                                style: TextStyle(fontSize: 22)),
+                          ),
+                        ),
+                      );
                     },
                   );
                 },
