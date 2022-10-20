@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 import 'package:ten_thousand_hours/view/screens/add_task.dart';
 import 'package:ten_thousand_hours/view/screens/timer_screen.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/task_card.dart';
 
 class HomeScreen extends StatelessWidget {
   static String id = "HomeScreen";
