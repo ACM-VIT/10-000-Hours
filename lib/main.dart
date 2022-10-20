@@ -7,7 +7,6 @@ import 'package:ten_thousand_hours/view/screens/splash_screen.dart';
 import 'package:ten_thousand_hours/view/screens/onboarding_screen.dart';
 import 'view/screens/add_task.dart';
 import 'view/screens/timer_screen.dart';
-import 'view/screens/splash_screen.dart';
 import 'view/screens/home_screen.dart';
 
 void main() {
@@ -26,11 +25,9 @@ void main() {
       initialRoute: OnboardingScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
-        OnboardingScreen.id: (context) => OnboardingScreen(),
-        
-        SplashScreen.id: (context) => SplashScreen(),
-        EditTaskName.id: (context) => EditTaskName(),
-        HomeScreen.id: (context) => HomeScreen(),
+        OnboardingScreen.id: (context) => const OnboardingScreen(),
+        EditTaskName.id: (context) => const EditTaskName(),
+        HomeScreen.id: (context) => const HomeScreen(),
         AddTask.id: (context) => AddTask(),
         TaskTimer.id: (context) => const TaskTimer(),
       },
