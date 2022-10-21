@@ -15,8 +15,10 @@ class AddTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Expanded(
+          Container(
+            padding: EdgeInsets.all(15),
               child: Center(
             child: TextFormField(
               controller: taskNameController,
@@ -24,38 +26,40 @@ class AddTask extends StatelessWidget {
               decoration: const InputDecoration(
                 hintText: 'Enter task name',
                 labelStyle: TextStyle(
-                  color: Color(0xFF6200EE),
+                  color: Colors.indigo,
                 ),
               ),
             ),
           )),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child:
-                Consumer<TaskListProvider>(builder: (context, provider, child) {
-              return CustomButton(
-                buttonText: "Save",
-                buttonCta: () {
 
-                  
-                  provider
-                      .onAddTask(TaskData(timerData, taskNameController.text),context);
-                  Navigator.pop(context);
-                },
-              );
-            }),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: CustomButton(
-                buttonText: "Back",
-                buttonCta: () {
-                  Navigator.pop(context);
-                }),
-          ),
-          const SizedBox(
-            height: 25,
-            width: double.infinity,
+          Container(
+
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children:[
+              Consumer<TaskListProvider>(builder: (context, provider, child) {
+                return ElevatedButton(
+                  child: Text('Save',style: TextStyle(fontSize: 18),),
+                  style: ButtonStyle(shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))) ),
+                  onPressed: () {
+                    provider.onAddTask(TaskData(timerData, taskNameController.text),context);
+                    Navigator.pop(context);
+                  },
+                );
+              }),
+
+            const SizedBox(
+              height: 10,
+            ),
+
+            ElevatedButton(
+                  child: Text("Back",style: TextStyle(fontSize: 18),),
+                  style: ButtonStyle(shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))) ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
+            ]),
           ),
         ],
       ),

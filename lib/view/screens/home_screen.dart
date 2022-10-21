@@ -67,6 +67,7 @@ class HomeScreenView extends StatelessWidget {
       // TaskCard(
       //                     taskName:
       //                     colorCode: 800),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
         height: 80,
         width: 80,
