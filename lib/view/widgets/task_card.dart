@@ -9,13 +9,13 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
-      height: 50,
-      color: Colors.grey[colorCode],
+      padding: EdgeInsets.symmetric(vertical: 13),
+      margin: EdgeInsets.only(bottom: 5),
+      color: Colors.blue[colorCode],
       child: Center(
           child: Text(
         taskName,
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white, fontSize: 22),
       )),
     );
   }

@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:ten_thousand_hours/providers/task_list_provider.dart';
 import 'package:ten_thousand_hours/view/screens/add_task.dart';
 import 'package:ten_thousand_hours/view/screens/timer_screen.dart';
+import 'package:ten_thousand_hours/view/widgets/task_card.dart';
+import '../widgets/custom_button.dart';
+
 
 class HomeScreen extends StatelessWidget {
   static String id = "HomeScreen";
@@ -26,6 +29,7 @@ class HomeScreenView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("10-000 Hours"),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 25, 10, 10),
@@ -67,8 +71,10 @@ class HomeScreenView extends StatelessWidget {
       ),
 
       // TaskCard(
-      //                     taskName:
-      //                     colorCode: 800),
+      //    taskName: ,
+      //    colorCode: 800
+      //  ),
+
       floatingActionButton: SizedBox(
         height: 80,
         width: 80,
