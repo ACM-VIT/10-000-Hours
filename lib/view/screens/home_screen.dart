@@ -38,32 +38,28 @@ class HomeScreenView extends StatelessWidget {
             Expanded(
               child: Consumer<TaskListProvider>(
                 builder: (context, provider, child) {
-                  if (provider.getTaskList().isEmpty) {
-                    return Center(
+                  if (provider.taskList.isEmpty) {
+                    return Container(
+                      margin: EdgeInsets.only(top: height / 3),
                       child: Text("Please press the + button to create a Task",
-                          style: TextStyle(fontSize: width / 20)),
+                          style: TextStyle(fontSize: width / 21)),
                     );
                   }
                   return ListView.builder(
-                    itemCount: provider.getTaskList().length,
+                    itemCount: provider.taskList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () => Navigator.pushNamed(context, TaskTimer.id,
                             arguments: {'index': index}),
-                        child: TaskCard(
-                          taskName: provider.getTaskList()[index].getTaskName(),
-                          colorCode: 300,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 12),
+                          margin: EdgeInsets.only(bottom: 5),
+                          color: Colors.blue.shade100,
+                          child: Center(
+                            child: Text(provider.taskList[index].getTaskName(),
+                                style: TextStyle(fontSize: 22)),
+                          ),
                         ),
-                        // child: Container(
-                        //   padding: EdgeInsets.symmetric(vertical: 12),
-                        //   margin: EdgeInsets.only(bottom: 5),
-                        //   color: Colors.blue.shade100,
-                        //   child: Center(
-                        //     child: Text(
-                        //         provider.getTaskList()[index].getTaskName(),
-                        //         style: TextStyle(fontSize: 22)),
-                        //   ),
-                        // ),
                       );
                     },
                   );
